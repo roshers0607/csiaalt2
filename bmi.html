@@ -19,6 +19,20 @@
             text-align: center;
         }
 
+        nav {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        nav select {
+            padding: 0.5rem;
+            font-size: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
         .container {
             max-width: 600px;
             margin: 2rem auto;
@@ -77,6 +91,14 @@
         <h1>BMI Calculator</h1>
     </header>
 
+    <nav>
+        <select onchange="navigatePage(this.value)">
+            <option value="home.html">Home</option>
+            <option value="bmi.html" selected>BMI Calculator</option>
+            <option value="meal.html">Meal Planner</option>
+            <option value="workout.html">Workout Planner</option>
+        </select>
+    </nav>
 
     <div class="container">
         <h2>Calculate Your BMI</h2>
@@ -94,6 +116,10 @@
     </div>
 
     <script>
+        function navigatePage(page) {
+            window.location.href = page;
+        }
+
         function calculateBMI(event) {
             event.preventDefault();
 
