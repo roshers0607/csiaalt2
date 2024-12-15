@@ -26,10 +26,11 @@
             margin: 1rem 0;
         }
 
-        nav a {
-            text-decoration: none;
-            color: #2d89ef;
-            font-weight: bold;
+        nav select {
+            padding: 0.5rem;
+            font-size: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
         }
 
         .container {
@@ -86,61 +87,23 @@
     </header>
 
     <nav>
-        <a href="#bmi">BMI Calculator</a>
-        <a href="#meal">Meal Planner</a>
-        <a href="#workout">Workout Planner</a>
+        <select onchange="navigatePage(this.value)">
+            <option value="bmi.html">BMI Calculator</option>
+            <option value="meal.html">Meal Planner</option>
+            <option value="workout.html">Workout Planner</option>
+        </select>
     </nav>
 
     <div class="container">
-        <section id="bmi" class="bmi-calculator">
-            <h2>BMI Calculator</h2>
-            <div class="form-group">
-                <label for="weight">Weight (kg):</label>
-                <input type="number" id="weight" placeholder="Enter your weight">
-            </div>
-            <div class="form-group">
-                <label for="height">Height (cm):</label>
-                <input type="number" id="height" placeholder="Enter your height">
-            </div>
-            <button onclick="calculateBMI()">Calculate BMI</button>
-            <div class="result" id="bmi-result"></div>
-        </section>
-
-        <section id="meal" class="meal-planner">
-            <h2>Meal Planner</h2>
-            <p>Coming soon! Plan and track your meals here.</p>
-        </section>
-
-        <section id="workout" class="workout-planner">
-            <h2>Workout Planner</h2>
-            <p>Coming soon! Plan and track your workouts here.</p>
+        <section class="bmi-calculator">
+            <h2>Welcome to Fitness App</h2>
+            <p>Use the dropdown menu to navigate to different features of the app, including the BMI Calculator, Meal Planner, and Workout Planner.</p>
         </section>
     </div>
 
     <script>
-        function calculateBMI() {
-            const weight = parseFloat(document.getElementById('weight').value);
-            const height = parseFloat(document.getElementById('height').value) / 100; // Convert cm to meters
-
-            if (isNaN(weight) || isNaN(height) || height <= 0 || weight <= 0) {
-                document.getElementById('bmi-result').textContent = "Please enter valid weight and height values.";
-                return;
-            }
-
-            const bmi = (weight / (height * height)).toFixed(2);
-            let category = '';
-
-            if (bmi < 18.5) {
-                category = 'Underweight';
-            } else if (bmi < 24.9) {
-                category = 'Normal weight';
-            } else if (bmi < 29.9) {
-                category = 'Overweight';
-            } else {
-                category = 'Obesity';
-            }
-
-            document.getElementById('bmi-result').textContent = `Your BMI is ${bmi} (${category}).`;
+        function navigatePage(page) {
+            window.location.href = page;
         }
     </script>
 </body>
