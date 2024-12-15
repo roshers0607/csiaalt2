@@ -15,61 +15,84 @@
         header {
             background: #2d89ef;
             color: white;
-            padding: 1rem 2rem;
+            padding: 1.5rem 2rem;
             text-align: center;
         }
 
-        .container {
-            max-width: 900px;
-            margin: auto;
-            padding: 1rem;
+        nav {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 1rem 0;
         }
 
-        .workout-tracker {
-            background: white;
+        nav select {
+            padding: 0.5rem;
+            font-size: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 2rem auto;
             padding: 1rem;
+            background: white;
             border-radius: 8px;
-            margin: 1rem 0;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
 
-        .form-group {
+        h2 {
+            text-align: center;
             margin-bottom: 1rem;
         }
 
-        label {
-            display: block;
-            margin-bottom: 0.5rem;
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
         }
 
-        input, button {
+        label {
+            font-weight: bold;
+        }
+
+        input, select {
             padding: 0.5rem;
-            width: 100%;
+            font-size: 1rem;
             border: 1px solid #ccc;
             border-radius: 4px;
         }
 
         button {
-            background: #2d89ef;
+            padding: 0.7rem;
+            font-size: 1rem;
             color: white;
+            background: #2d89ef;
             border: none;
+            border-radius: 4px;
             cursor: pointer;
         }
 
         button:hover {
-            background: #1a5cb7;
+            background: #1a5fb4;
         }
 
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 1rem;
+        .workout-list {
+            margin-top: 2rem;
         }
 
-        th, td {
+        .workout-list ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .workout-list li {
+            background: #f9f9f9;
             padding: 0.5rem;
-            text-align: left;
-            border-bottom: 1px solid #ccc;
+            margin: 0.5rem 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
         }
     </style>
 </head>
@@ -78,53 +101,54 @@
         <h1>Workout Planner</h1>
     </header>
 
+    <nav>
+        <select onchange="navigatePage(this.value)">
+            <option value="home.html">Home</option>
+            <option value="bmi.html">BMI Calculator</option>
+            <option value="meal.html">Meal Planner</option>
+            <option value="workout.html" selected>Workout Planner</option>
+        </select>
+    </nav>
+
     <div class="container">
-        <section class="workout-tracker">
-            <h2>Plan Your Workouts</h2>
-            <form id="workout-form">
-                <div class="form-group">
-                    <label for="exercise-name">Exercise Name:</label>
-                    <input type="text" id="exercise-name" placeholder="e.g., Push-ups">
-                </div>
-                <div class="form-group">
-                    <label for="sets">Sets:</label>
-                    <input type="number" id="sets" placeholder="e.g., 3">
-                </div>
-                <div class="form-group">
-                    <label for="reps">Reps:</label>
-                    <input type="number" id="reps" placeholder="e.g., 10">
-                </div>
-                <button type="button" onclick="addWorkout()">Add Workout</button>
-            </form>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Exercise</th>
-                        <th>Sets</th>
-                        <th>Reps</th>
-                    </tr>
-                </thead>
-                <tbody id="workout-list">
-                </tbody>
-            </table>
-        </section>
+        <h2>Plan Your Workouts</h2>
+        <form onsubmit="addWorkout(event)">
+            <label for="workout">Workout:</label>
+            <input type="text" id="workout" placeholder="Enter your workout" required>
+
+            <label for="duration">Duration (minutes):</label>
+            <input type="number" id="duration" placeholder="Enter duration" required>
+
+            <button type="submit">Add Workout</button>
+        </form>
+
+        <div class="workout-list">
+            <h3>Your Workouts:</h3>
+            <ul id="workoutList"></ul>
+        </div>
     </div>
 
     <script>
-        function addWorkout() {
-            const exerciseName = document.getElementById('exercise-name').value;
-            const sets = document.getElementById('sets').value;
-            const reps = document.getElementById('reps').value;
+        function navigatePage(page) {
+            window.location.href = page;
+        }
 
-            if (exerciseName && sets && reps) {
-                const workoutList = document.getElementById('workout-list');
-                const row = document.createElement('tr');
-                row.innerHTML = `<td>${exerciseName}</td><td>${sets}</td><td>${reps}</td>`;
-                workoutList.appendChild(row);
+        function addWorkout(event) {
+            event.preventDefault();
 
-                document.getElementById('workout-form').reset();
-            } else {
-                alert('Please fill out all fields.');
+            const workout = document.getElementById('workout').value;
+            const duration = document.getElementById('duration').value;
+
+            if (workout && duration) {
+                const workoutList = document.getElementById('workoutList');
+
+                const li = document.createElement('li');
+                li.textContent = `${workout} - ${duration} minutes`;
+
+                workoutList.appendChild(li);
+
+                document.getElementById('workout').value = '';
+                document.getElementById('duration').value = '';
             }
         }
     </script>
