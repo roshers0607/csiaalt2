@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fitness App</title>
+    <title>Fitness App - Home</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -15,7 +15,7 @@
         header {
             background: #2d89ef;
             color: white;
-            padding: 1rem 2rem;
+            padding: 1.5rem 2rem;
             text-align: center;
         }
 
@@ -41,7 +41,7 @@
 
         .welcome {
             background: white;
-            padding: 1rem;
+            padding: 1.5rem;
             border-radius: 8px;
             margin: 1rem 0;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -52,22 +52,29 @@
             margin-bottom: 1rem;
         }
 
-        .welcome p {
-            margin: 0.5rem 0;
+        .info-section {
+            background: white;
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
 
-        .welcome button {
-            padding: 0.5rem 1rem;
-            margin-top: 1rem;
+        .info-section h3 {
+            margin-bottom: 0.5rem;
+        }
+
+        .info-section p {
+            margin: 0.5rem 0;
+            line-height: 1.6;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 2rem;
+            padding: 1rem;
             background: #2d89ef;
             color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-
-        .welcome button:hover {
-            background: #1a5cb7;
         }
     </style>
 </head>
@@ -89,10 +96,27 @@
     <div class="container">
         <section class="welcome">
             <h2>Welcome to the Fitness App</h2>
-            <p>Track your fitness journey with our BMI Calculator, Meal Planner, and Workout Planner.</p>
-            <p>Select a feature from the dropdown menu to get started!</p>
+            <p>Track your fitness journey with ease. Explore tools to plan your meals, monitor workouts, and calculate your BMI.</p>
+            <p>Stay consistent and achieve your fitness goals faster!</p>
+        </section>
+
+        <section class="info-section">
+            <h3>Why Use Our Fitness App?</h3>
+            <p>Our app is designed to simplify your fitness journey. With intuitive tools for tracking and planning, you can focus on what matters most—staying healthy and active.</p>
+            <p>Whether you’re a beginner or a seasoned athlete, our app adapts to your needs.</p>
+        </section>
+
+        <section class="info-section">
+            <h3>Features</h3>
+            <p><strong>BMI Calculator:</strong> Easily calculate your Body Mass Index to assess your health.</p>
+            <p><strong>Meal Planner:</strong> Plan nutritious meals and track your daily intake.</p>
+            <p><strong>Workout Planner:</strong> Create and monitor workout routines tailored to your goals.</p>
         </section>
     </div>
+
+    <footer>
+        <p>&copy; 2024 Fitness App. All rights reserved.</p>
+    </footer>
 
     <script>
         function navigatePage(page) {
@@ -101,3 +125,4 @@
     </script>
 </body>
 </html>
+
