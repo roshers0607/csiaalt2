@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Workout Planner</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f3f4f6;
+        }
+
+        header {
+            background: #2d89ef;
+            color: white;
+            padding: 1rem 2rem;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: auto;
+            padding: 1rem;
+        }
+
+        .workout-tracker {
+            background: white;
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        input, button {
+            padding: 0.5rem;
+            width: 100%;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            background: #2d89ef;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #1a5cb7;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+
+        th, td {
+            padding: 0.5rem;
+            text-align: left;
+            border-bottom: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Workout Planner</h1>
+    </header>
+
+    <div class="container">
+        <section class="workout-tracker">
+            <h2>Plan Your Workouts</h2>
+            <form id="workout-form">
+                <div class="form-group">
+                    <label for="exercise-name">Exercise Name:</label>
+                    <input type="text" id="exercise-name" placeholder="e.g., Push-ups">
+                </div>
+                <div class="form-group">
+                    <label for="sets">Sets:</label>
+                    <input type="number" id="sets" placeholder="e.g., 3">
+                </div>
+                <div class="form-group">
+                    <label for="reps">Reps:</label>
+                    <input type="number" id="reps" placeholder="e.g., 10">
+                </div>
+                <button type="button" onclick="addWorkout()">Add Workout</button>
+            </form>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Exercise</th>
+                        <th>Sets</th>
+                        <th>Reps</th>
+                    </tr>
+                </thead>
+                <tbody id="workout-list">
+                </tbody>
+            </table>
+        </section>
+    </div>
+
+    <script>
+        function addWorkout() {
+            const exerciseName = document.getElementById('exercise-name').value;
+            const sets = document.getElementById('sets').value;
+            const reps = document.getElementById('reps').value;
+
+            if (exerciseName && sets && reps) {
+                const workoutList = document.getElementById('workout-list');
+                const row = document.createElement('tr');
+                row.innerHTML = `<td>${exerciseName}</td><td>${sets}</td><td>${reps}</td>`;
+                workoutList.appendChild(row);
+
+                document.getElementById('workout-form').reset();
+            } else {
+                alert('Please fill out all fields.');
+            }
+        }
+    </script>
+</body>
+</html>
